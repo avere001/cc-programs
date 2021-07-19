@@ -52,7 +52,7 @@ function dumpAllEnchantmentNames()
         names[#names + 1] = name
     end
     table.sort(names)
-    local nameDump = io.open("./enchants.txt", "w")
+    local nameDump = io.open(shell.resolve("enchants.txt"), "w")
     for _, name in ipairs(names) do
         nameDump:write(string.format("%s\n", name))
     end
@@ -61,7 +61,7 @@ end
 
 function discardBlacklistedEnchants()
     local blacklist = {}
-    for line in io.lines("/enchants_blacklist.txt") do
+    for line in io.lines(shell.resolve("enchants_blacklist.txt")) do
         blacklist[line] = true
     end
     for name, stacks in pairs(stacks_by_enchant_name) do
